@@ -1,7 +1,12 @@
-# nixpacks.toml - Ensure PHP 8.2 and Composer are available
+# nixpacks.toml
 
 [phases.setup]
 nixPkgs = ["php82", "composer"]
+
+[phases.build]
+cmds = [
+    "composer install --ignore-platform-reqs"
+]
 
 [start]
 cmd = "php -S 0.0.0.0:8080"
