@@ -1,4 +1,4 @@
-/* General Reset */
+/* Reset default browser styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,9 +6,9 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Center the form perfectly */
+/* Center the form */
 body {
-    background-color: #f8f9fa;
+    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,55 +16,55 @@ body {
     margin: 0;
 }
 
-/* Form Container */
-form {
-    background: #ffffff;
-    padding: 30px;
+/* Form container */
+.container {
+    background: #fff;
+    padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    animation: fadeIn 0.4s ease-in-out;
 }
 
-/* Form Heading */
+/* Heading */
 h2 {
     text-align: center;
     color: #333;
-    font-size: 24px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* Form fields */
+.form-group {
     margin-bottom: 15px;
 }
 
-/* Labels */
 label {
     font-size: 14px;
     font-weight: bold;
     color: #555;
+    display: block;
     margin-bottom: 5px;
 }
 
-/* Input Fields */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
-    transition: border 0.3s ease-in-out;
+    transition: 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color: #28a745;
+input:focus {
+    border-color: #007bff;
     outline: none;
-    box-shadow: 0 0 6px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-/* Event Checkboxes */
+/* Checkbox Styling */
 .checkbox-group {
     display: flex;
     flex-direction: column;
@@ -73,25 +73,23 @@ input[type="password"]:focus {
 
 input[type="checkbox"] {
     margin-right: 8px;
-    transform: scale(1.2);
-    cursor: pointer;
+    transform: scale(1.1);
 }
 
-/* Submit Button */
+/* Button */
 button {
     width: 100%;
     padding: 12px;
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
+    font-weight: bold;
     transition: 0.3s;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
-
