@@ -2,12 +2,11 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php'; // Ensure PHPMailer is installed via Composer
+require 'vendor/autoload.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
 
-    // Get form values and sanitize inputs
     $fullName = htmlspecialchars(trim($_POST['fullName']));
     $email = htmlspecialchars(trim($_POST['email']));
     $phone = htmlspecialchars(trim($_POST['phone']));
@@ -15,53 +14,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirmPassword = trim($_POST['confirmPassword']);
     $events = isset($_POST['events']) ? $_POST['events'] : [];
 
-    // Validate Full Name
     if (empty($fullName)) {
         $errors[] = "Full Name is required.";
     }
 
-    // Validate Email
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "A valid Email is required.";
     }
 
-    // Validate Phone Number
     if (empty($phone) || !preg_match('/^\d{10}$/', $phone)) {
         $errors[] = "Phone Number must be 10 digits long.";
     }
 
-    // Validate Password
     if (empty($password) || strlen($password) < 8) {
         $errors[] = "Password must be at least 8 characters long.";
     }
 
-    // Check Password Confirmation
     if ($password !== $confirmPassword) {
         $errors[] = "Passwords do not match.";
     }
 
-    // Validate Event Selection
     if (empty($events)) {
         $errors[] = "Please select at least one event.";
     }
 
-    // If no errors, send email using PHPMailer
     if (empty($errors)) {
         $mail = new PHPMailer(true);
 
         try {
             // SMTP Configuration
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';           // Use your mail provider (Gmail SMTP example)
+            $mail->Host = 'smtp.gmail.com';          
             $mail->SMTPAuth = true;
-            $mail->Username = getenv('SMTP_USER');    // Use environment variables for security
-            $mail->Password = getenv('SMTP_PASS');    // App password (if using Gmail)
+            $mail->Username = getenv('SMTP_USER');    
+            $mail->Password = getenv('SMTP_PASS');   
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
             // Email Content
-            $mail->setFrom('your-email@gmail.com', 'Event Organizer'); // Sender email
-            $mail->addAddress($email); // 💡 Dynamic Recipient from the form input
+            $mail->setFrom('your-email@gmail.com', 'Event Organizer'); 
+            $mail->addAddress($email);
             $mail->Subject = 'Event Registration Confirmation';
             $mail->Body = "Hello $fullName,\n\nThank you for registering!\n\n"
                 . "Your details:\n"
@@ -83,10 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration</title>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
     <h2>Event Registration Form</h2>
