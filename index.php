@@ -82,32 +82,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration</title>
-    <link rel="stylesheet" href="/style.css"> 
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <h2>Event Registration Form</h2>
-    <form method="post" action="">
-        <label>Full Name:</label><br>
-        <input type="text" name="fullName" value="<?php echo htmlspecialchars($_POST['fullName'] ?? ''); ?>"><br><br>
+    <div class="container">
+        <h2>Event Registration</h2>
+        <form method="post" action="">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="fullName" value="<?php echo htmlspecialchars($_POST['fullName'] ?? ''); ?>" required>
+            </div>
 
-        <label>Email:</label><br>
-        <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>"><br><br>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required>
+            </div>
 
-        <label>Phone Number:</label><br>
-        <input type="text" name="phone" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>"><br><br>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>" required>
+            </div>
 
-        <label>Password:</label><br>
-        <input type="password" name="password"><br><br>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
 
-        <label>Confirm Password:</label><br>
-        <input type="password" name="confirmPassword"><br><br>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="confirmPassword" required>
+            </div>
 
-        <label>Select Events:</label><br>
-        <input type="checkbox" name="events[]" value="Workshop"> Workshop<br>
-        <input type="checkbox" name="events[]" value="Seminar"> Seminar<br>
-        <input type="checkbox" name="events[]" value="Networking"> Networking Session<br><br>
+            <div class="form-group">
+                <label>Select Events:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="events[]" value="Workshop"> Workshop</label>
+                    <label><input type="checkbox" name="events[]" value="Seminar"> Seminar</label>
+                    <label><input type="checkbox" name="events[]" value="Networking"> Networking Session</label>
+                </div>
+            </div>
 
-        <button type="submit">Register</button>
-    </form>
+            <button type="submit">Register</button>
+        </form>
+    </div>
 </body>
 </html>
+
