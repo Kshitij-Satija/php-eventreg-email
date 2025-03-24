@@ -54,23 +54,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';           // Use your mail provider (Gmail SMTP example)
             $mail->SMTPAuth = true;
-            $mail->Username = getenv('SMTP_USER');
-            $mail->Password = getenv('SMTP_PASS'); // Use an App Password if using Gmail
+            $mail->Username = getenv('SMTP_USER');    // Use environment variables for security
+            $mail->Password = getenv('SMTP_PASS');    // App password (if using Gmail)
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
             // Email Content
-            $mail->setFrom('your-email@gmail.com', 'Event Organizer');
-            $mail->addAddress('recipient@example.com'); // Send to your inbox
-            $mail->Subject = 'New Event Registration';
-            $mail->Body = "New registration details:\n\n"
-                . "Full Name: $fullName\n"
+            $mail->setFrom('your-email@gmail.com', 'Event Organizer'); // Sender email
+            $mail->addAddress($email); // 💡 Dynamic Recipient from the form input
+            $mail->Subject = 'Event Registration Confirmation';
+            $mail->Body = "Hello $fullName,\n\nThank you for registering!\n\n"
+                . "Your details:\n"
                 . "Email: $email\n"
                 . "Phone: $phone\n"
-                . "Selected Events: " . implode(", ", $events) . "\n";
+                . "Selected Events: " . implode(", ", $events) . "\n\n"
+                . "We look forward to seeing you!";
 
             $mail->send();
-            echo "<p style='color: green;'>Registration successful. Confirmation email sent.</p>";
+            echo "<p style='color: green;'>Registration successful. Confirmation email sent to $email.</p>";
         } catch (Exception $e) {
             echo "<p style='color: red;'>Error sending email: {$mail->ErrorInfo}</p>";
         }
