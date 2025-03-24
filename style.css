@@ -1,5 +1,12 @@
-body {
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
+}
+
+body {
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
@@ -8,49 +15,100 @@ body {
     margin: 0;
 }
 
+/* Form Container */
 form {
     background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 90%;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Form Heading */
 h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 15px;
 }
 
+/* Labels */
 label {
     font-weight: bold;
     display: block;
     margin: 10px 0 5px;
+    color: #555;
 }
 
+/* Input Fields */
 input[type="text"],
 input[type="password"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+/* Submit Button */
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 button:hover {
     background-color: #218838;
 }
 
+/* Checkboxes */
 input[type="checkbox"] {
-    margin-right: 5px;
+    margin-right: 7px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Checkbox Container */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+/* Form Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    form {
+        width: 90%;
+        padding: 20px;
+    }
 }
