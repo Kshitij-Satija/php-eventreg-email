@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Exit immediately if any command fails
+set -e
+
 # Ensure Composer is installed
 if ! command -v composer &> /dev/null
 then
@@ -8,8 +11,8 @@ then
     mv composer.phar /usr/local/bin/composer
 fi
 
-# Install PHP dependencies
-composer install --ignore-platform-reqs
+# Install PHP dependencies (ignore platform errors for Railway compatibility)
+composer install --no-interaction --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# Start the PHP built-in server
-php -S 0.0.0.0:8080
+# Start the PHP built-in server on Railway's expected port (default 3000)
+php -S 0.0.0.0:${PORT:-3000}
